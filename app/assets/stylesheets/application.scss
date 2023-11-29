@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ .sneakers-navbar {
+  display: inline;
+ }
+
+ .sneakers-list li {
+  display: inline;
+ }
+
+ .nav-links > a  {
+  text-decoration: none;
+  color: black;
+ }
