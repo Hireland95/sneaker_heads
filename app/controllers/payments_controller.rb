@@ -47,7 +47,6 @@ class PaymentsController < ApplicationController
       is_recurring: false,
       count_retry: 3,
       expires_in: 259200,
-      redirect_url: "http://127.0.0.1:3000",
       payment_methods: ['card']
     }.to_json
     response = http.request(request)
