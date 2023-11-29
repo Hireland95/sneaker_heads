@@ -7,6 +7,10 @@
       <h1><%= @trainer.name %></h1>
       <p>Some awesome description of our amazing trainers.</p>
       <p>Amount: <%= humanized_money_with_symbol(@trainer.price) %></p>
+      <%= form_with url: orders_path do %>
+      <%= hidden_field_tag 'trainer_id', @trainer.id %>
+      <%= submit_tag 'Purchase', class: 'btn btn-primary' %>
+      <% end %>
     </div>
   </div>
 </div>

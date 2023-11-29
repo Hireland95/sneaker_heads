@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row py-4">
+    <div class="col-md-3"><%= image_tag @order.trainer.photo_url, width: '100%' %></div>
+    <div class="col">
+      <h1>Checkout summary</h1>
+      <p>Purchase of <strong><%= @order.trainer.name %></strong> for <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
+      <%= button_to 'Pay', order_payments_path(@order), class:"btn btn-primary", method: :post%>
+    </div>
+  </div>
+</div>
