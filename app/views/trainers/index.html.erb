@@ -1,1 +1,18 @@
-<h1 class="btn btn-primary">Hello</h1>
+<div class="container">
+  <h1>Trainers</h1>
+  <div class="row">
+    <% @trainers.each do |trainer| %>
+      <div class="col-6 col-md-4">
+        <div class="card">
+          <%= image_tag trainer.photo_url , class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= trainer.name %></h5>
+            <p class="card-text"><%= trainer.category.name %></p>
+            <p>Amount: <%= humanized_money_with_symbol(trainer.price) %></p>
+            <%= link_to "More details", trainer_path(trainer), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

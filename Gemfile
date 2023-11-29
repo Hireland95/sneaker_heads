@@ -36,6 +36,9 @@ gem "bootstrap"
 
 gem "sassc-rails"
 
+gem 'money-rails'
+
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
