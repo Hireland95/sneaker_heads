@@ -34,14 +34,29 @@ class PaymentsController < ApplicationController
     request["accept"] = 'application/json'
     request["content-type"] = 'application/json'
     request["authorization"] = "Bearer #{access_token}"
-    request.body = "{\"transaction\":{\"currency\":\"gbp\",\"moto\:false,\"capture\":true,\"order_id\":\"#{@order.id}\",\"amount\":#{@order.amount_cents}},\"customer\":{\"shipping\":{\"address_match\":false}},\"tds\":{\"is_active\":false},\"is_recurring\":false,\"count_retry\":3,\"expires_in\":259200,\"payment_methods\":[\"card\"]}"
+    request.body = {
+      transaction: {
+        currency: 'gbp',
+        moto: false,
+        capture: true,
+        order_id: @order.id,
+        amount: @order.amount_cents / 100
+      },
+      customer: { shipping: { address_match: false } },
+      tds: { is_active: false },
+      is_recurring: false,
+      count_retry: 3,
+      expires_in: 259200,
+      redirect_url: "http://127.0.0.1:3000",
+      payment_methods: ['card']
+    }.to_json
     response = http.request(request)
     body = response.read_body
+    puts body
     data = JSON.parse body
     link_id = data['link_id']
-    # checkout_url = "https://test-pay.acquired.com/v1/#{link_id}"
-    checkout_url = "https://www.bbc.co.uk"
+    checkout_url = "https://test-pay.acquired.com/v1/#{link_id}"
+    puts checkout_url
     redirect_to checkout_url, allow_other_host: true
   end
-
 end
