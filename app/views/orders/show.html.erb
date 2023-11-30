@@ -1,0 +1,10 @@
+
+
+<h1> Hello from order show page </h1>
+
+
+<% @orders.each do |order| %>
+    <%= order.order_uniq %>
+    <%= order.trainer_sku %>
+    <%= image_tag order.trainer.photo_url, height: 80%>
+<% end %>

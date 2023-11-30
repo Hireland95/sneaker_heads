@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
         currency: 'gbp',
         moto: false,
         capture: true,
-        order_id: @order.id,
+        order_id: @order.order_uniq,
         amount: @order.amount_cents / 100
       },
       payment: {reference: @order.id.to_s },
@@ -57,6 +57,11 @@ class PaymentsController < ApplicationController
     link_id = data['link_id']
     checkout_url = "https://test-pay.acquired.com/v1/#{link_id}"
     puts checkout_url
-    redirect_to checkout_url, allow_other_host: true
+    if redirect_to checkout_url, allow_other_host: true
+      puts "successfully redirected!"
+      @order.state = "Sent to Acquired"
+      @order.save
+      puts "changed the order status"
+    end
   end
 end
