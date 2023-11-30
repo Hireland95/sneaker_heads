@@ -42,12 +42,13 @@ class PaymentsController < ApplicationController
         order_id: @order.id,
         amount: @order.amount_cents / 100
       },
+      payment: {reference: @order.id.to_s },
       customer: { shipping: { address_match: false } },
-      tds: { is_active: false },
+      tds: { is_active: false},
       is_recurring: false,
       count_retry: 3,
       expires_in: 259200,
-      payment_methods: ['card']
+      payment_methods: ['card','google_pay', 'pay_by_bank'],
     }.to_json
     response = http.request(request)
     body = response.read_body
