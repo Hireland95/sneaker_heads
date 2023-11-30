@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_11_29_171840) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -21,8 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_171840) do
     t.string "state"
     t.string "trainer_sku"
     t.integer "amount_cents", default: 0, null: false
-    t.integer "user_id", null: false
-    t.integer "trainer_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "trainer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trainer_id"], name: "index_orders_on_trainer_id"
@@ -32,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_171840) do
   create_table "trainers", force: :cascade do |t|
     t.string "sku"
     t.string "name"
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.string "photo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
