@@ -1,13 +1,22 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid justi">
-    <a class="navbar-brand" href="#">SneakerHeads</a>
+  <div class="container-fluid">
+    <%= link_to "SneakerHeads 👟", trainers_path, class: "navbar-brand"%>
+    <%  if user_signed_in? %>
+    <h2 class="mt-2">
+      <%= "Welcome #{current_user.first_name}"%>
+    </h2>
+    <% end %>
+    <h1>
     <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <% if user_signed_in? %>
-        <li class="nav-item">
-            <%= link_to "Home", root_path, class: "navbar-brand"%>
+         <li>
+            <%= link_to "Orders", order_path(1), class: "navbar-brand"%>
         </li>
-        <li class="nav-item">
+        <li>
+            <%= link_to "Home", trainers_path, class: "navbar-brand"%>
+        </li>
+        <li>
           <%= link_to "Log out", destroy_user_session_path, class: "navbar-brand", data: {turbo_method: :delete} %>
         </li>
         <% else %>

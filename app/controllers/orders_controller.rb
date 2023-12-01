@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def create
     random_number = rand(10_000..99_999)
     trainer = Trainer.find(params[:trainer_id])
-    order = Order.create!(trainer: trainer, trainer_sku: trainer.sku, amount: trainer.price, state: 'pending', user: current_user, order_uniq: random_number )
+    order = Order.create!(trainer: trainer, trainer_sku: trainer.sku, amount: trainer.price, state: 'pending', user: current_user, order_uniq: random_number, address: params[:address], postcode: params[:postcode])
     redirect_to new_order_payment_path(order)
   end
 end

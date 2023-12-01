@@ -27,3 +27,57 @@
   text-decoration: none;
   color: black;
  }
+
+.card {
+  transition: transform ease 400ms;
+}
+
+ .card:hover {
+  transform: translate(0, -10px);
+ }
+
+ #user_first_name {
+  width: 100%;
+ }
+
+ #user_last_name {
+  width: 100%;
+ }
+
+ #user_email {
+  width: 100%;
+ }
+
+ #user_password {
+  width: 100%;
+ }
+
+ #user_password_confirmation {
+  width: 100%;
+ }
+
+
+
+ .has-bg-img {
+  position: relative;
+}
+
+.bg-img {
+  position: relative;
+  height: 800px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+}

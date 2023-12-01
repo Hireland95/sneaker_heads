@@ -42,13 +42,25 @@ class PaymentsController < ApplicationController
         order_id: @order.order_uniq,
         amount: @order.amount_cents / 100
       },
+      customer: {
+        first_name: @order.user.first_name,
+        last_name: @order.user.last_name
+      },
+      billing: {
+        address: @order.address
+      },
+      shipping: {
+        address_match: true,
+        address: { line_1: @order.address, postcode: @order.postcode},
+        email: @order.user.email
+      },
       payment: {reference: @order.id.to_s },
       customer: { shipping: { address_match: false } },
       tds: { is_active: false},
       is_recurring: false,
       count_retry: 3,
       expires_in: 259200,
-      payment_methods: ['card','google_pay', 'pay_by_bank'],
+      payment_methods: ['pay_by_bank','google_pay', 'card', "apple_pay"],
     }.to_json
     response = http.request(request)
     body = response.read_body

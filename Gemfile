@@ -41,6 +41,8 @@ gem 'money-rails'
 
 gem 'json'
 
+gem "simple_form", github: "heartcombo/simple_form"
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

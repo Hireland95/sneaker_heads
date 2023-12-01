@@ -1,10 +1,45 @@
 <div class="container">
-  <div class="row py-4">
+  <div class="row py-4 shadow m-3">
     <div class="col-md-3"><%= image_tag @order.trainer.photo_url, width: '100%' %></div>
-    <div class="col">
-      <h1>Checkout summary</h1>
-      <p>Purchase of <strong><%= @order.trainer.name %></strong> for <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
-      <%= button_to 'Pay', order_payments_path(@order), class:"btn btn-primary", method: :post%>
+    <div class="col position-relative">
+      <div>
+        <h1>Checkout summary </h1>
+        <p>Purchase of <strong><%= @order.trainer.name %></strong> for <strong><%= humanized_money_with_symbol @order.amount %> 🚀</strong></p>
+      </div>
+      <div class="mt-2">
+        <h3> Shipping Address:</h3>
+        <h5> 📍<%=@order.address%>, <%= @order.postcode %> </h4>
+      </div>
+      <div class="position-absolute bottom-0 mt-3">
+        <%= button_to 'Purchase', order_payments_path(@order), class:"btn btn-outline-primary btn-lg", method: :post%>
+        <div class="d-flex gap-3">
+          <p class="mt-4">You will be re-directed to a hosted checkout page powered by Acquired.com</p>
+          <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Who are Acquired.com?</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ACQUIRED.com Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Acquired.com</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Acquired.com is a data-rich payments platform designed as a complete solution to fulfil all merchant’s payment requirements, from pay-in to pay-out – on a single platform.
+          <br>
+          <br>They are FCA regulated and can process Visa, Mastercard and American Express payments via web, mobile and virtual terminal.
+          <br>
+          <br>Find further details at: https://acquired.com
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
